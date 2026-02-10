@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #d32f2f;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons {
+            margin: 30px 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 22px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .yes-button {
+            background: linear-gradient(135deg, #ff1744 0%, #d32f2f 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+        }
+
+        .no-button {
+            background: white;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .gif_container img {
+            width: 250px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Success page styles */
+        .success-container {
+            display: none;
+        }
+
+        .success-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .header_text {
+            font-size: 3em;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .success-gif {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hearts {
+            font-size: 3em;
+            margin: 20px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="questionPage">
+        <h1>Will you be my Valentine? 💕</h1>
+        <div class="buttons">
+            <button class="yes-button" id="yesButton">Yes!</button>
+            <button class="no-button" id="noButton">No</button>
+        </div>
+        <div class="gif_container">
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute pleading cat">
+        </div>
+    </div>
+
+    <div class="container success-container" id="successPage">
+        <div class="hearts">💕💖💕</div>
+        <h1 class="header_text">I knew you'd say yes! 🎉</h1>
+        <div class="gif_container">
+            <img class="success-gif" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif" alt="Happy celebration">
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "Are you sure? 🥺",
+            "Really sure?? 😢",
+            "Are you positive? 💔",
+            "Pookie please... 🙏",
+            "Just think about it! 💭",
+            "If you say no, I will be really sad... 😭",
+            "I will be very sad... 😿",
+            "I will be very very very sad... 💔💔",
+            "Ok fine, I will stop asking... 😔",
+            "Just kidding, say yes please! ❤️"
+        ];
+
+        let messageIndex = 0;
+        let yesSize = 1;
+
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const questionPage = document.getElementById('questionPage');
+        const successPage = document.getElementById('successPage');
+
+        noButton.addEventListener('click', () => {
+            // Change the No button text
+            noButton.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+
+            // Grow the Yes button each click
+            yesSize += 0.3;
+            yesButton.style.transform = `scale(${yesSize})`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            questionPage.style.display = 'none';
+            successPage.classList.add('active');
+        });
+    </script>
+</body>
+</html>
