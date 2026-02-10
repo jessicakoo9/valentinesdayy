@@ -54,37 +54,34 @@
 })();
 */
 const messages = [
-    "Are you sure?",
-    "Really sure??",
-    "Are you positive?",
-    "Pookie please...",
-    "Just think about it!",
-    "If you say no, I will be really sad...",
-    "I will be very sad...",
-    "I will be very very very sad...",
-    "Ok fine, I will stop asking...",
-    "Just kidding, say yes please! ❤️"
+  "Are you sure?",
+  "Really sure??",
+  "Are you positive?",
+  "Pookie please...",
+  "Just think about it!",
+  "If you say no, I will be really sad...",
+  "I will be very sad...",
+  "I will be very very very sad...",
+  "Ok fine, I will stop asking...",
+  "Just kidding, say yes please! ❤️"
 ];
 
 let messageIndex = 0;
-let yesButton = document.getElementById("yes");
-let noButton = document.getElementById("no");
-
 let yesSize = 1;
 
-noButton.addEventListener("click", () => {
-  yesSize += 0.3; // grows each click
-  yesButton.style.transform = `scale(${yesSize})`;
-});
 function handleNoClick() {
-    const noButton = document.querySelector('.no-button');
-    const yesButton = document.querySelector('.yes-button');
-    noButton.textContent = messages[messageIndex];
-    messageIndex = (messageIndex + 1) % messages.length;
-    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.5}px`;
+  const noButton = document.querySelector(".no-button");
+  const yesButton = document.querySelector(".yes-button");
+
+  // change the No button text
+  noButton.textContent = messages[messageIndex];
+  messageIndex = (messageIndex + 1) % messages.length;
+
+  // grow the Yes button each click
+  yesSize += 0.3;
+  yesButton.style.transform = `scale(${yesSize})`;
 }
 
 function handleYesClick() {
-    window.location.href = "yes_page.html";
+  window.location.href = "yes_page.html";
 }
