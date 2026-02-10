@@ -67,7 +67,15 @@ const messages = [
 ];
 
 let messageIndex = 0;
+let yesButton = document.getElementById("yes");
+let noButton = document.getElementById("no");
 
+let yesSize = 1;
+
+noButton.addEventListener("click", () => {
+  yesSize += 0.3; // grows each click
+  yesButton.style.transform = `scale(${yesSize})`;
+});
 function handleNoClick() {
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
